@@ -1,12 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <memory>
 
 #include "ConwayLifeArray.h"
 #include "ImageView.h"
 
 int main() {
-    ConwayLifeArray *conway = new ConwayLifeArray(100, 100);
+    std::shared_ptr<ConwayLifeArray> conway = std::make_shared<ConwayLifeArray>(100, 100);
 
     // set pattern of blinker
     conway->SetAlive(1, 0);
@@ -28,8 +29,6 @@ int main() {
         conway->CalcNextGeneration();
         ImageView::write(conway);
     }
-
-    delete conway;
 
     return 0;
 }

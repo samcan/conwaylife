@@ -2,6 +2,7 @@
 #define _IMAGEVIEW_H_
 
 #include <string>
+#include <memory>
 
 #include "ConwayLifeArray.h"
 
@@ -10,7 +11,7 @@ private:
     const static std::string StringAlive();
     const static std::string StringDead();
 public:
-    static void write(ConwayLifeArray *board);
+    static void write(std::shared_ptr<ConwayLifeArray> board);
 };
 
 #endif
