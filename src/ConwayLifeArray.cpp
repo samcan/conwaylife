@@ -47,8 +47,28 @@ const int ConwayLifeArray::SizeY() {
 
 const bool ConwayLifeArray::IsAlive(const int x, const int y) {
     if (x < 0 || x >= SizeX() || y < 0 || y >= SizeY()) {
-        // we've been given an out of bounds cell so we'll treat it as dead
-        return false;
+        // we've been given an out of bounds cell so we'll wrap around to
+        // the other side
+        int new_x(x);
+        int new_y(y);
+
+        // can't do a straight modulus operation as if the x or y is negative,
+        // since C++11 the result will also be negative. As we're trying to loop
+        // around positive I add the array size to x or y to get the new_x or
+        // new_y
+        if (x >= SizeX()) {
+            new_x = x % SizeX();
+        } else if (x < 0) {
+            new_x = x + SizeX();
+        }
+
+        if (y >= SizeY()) {
+            new_y = y % SizeY();
+        } else if (y < 0) {
+            new_y = y + SizeY();
+        }
+
+        return IsAlive(new_x, new_y);
     } else {
         return m_board[Index(x, y)];
     }
