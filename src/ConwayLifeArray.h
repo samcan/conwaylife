@@ -5,8 +5,8 @@
 
 class ConwayLifeArray : public ConwayLife {
 private:
-    int size_x;
-    int size_y;
+    int m_size_x;
+    int m_size_y;
 
     const bool CalcNewCellState(const int x, const int y);
     const int CountAliveNeighbors(const int x, const int y);
@@ -29,7 +29,7 @@ public:
 
     // instead of using a 2D array we're using a 1D array and indexing
     // into the appropriate element
-    bool *board;
+    bool *m_board;
 };
 
 

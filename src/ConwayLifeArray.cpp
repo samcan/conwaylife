@@ -21,10 +21,10 @@
 #include "ConwayLifeArray.h"
 
 ConwayLifeArray::ConwayLifeArray(const int x, const int y) {
-    size_x = x;
-    size_y = y;
+    m_size_x = x;
+    m_size_y = y;
 
-    board = new bool[SizeX() * SizeY()];
+    m_board = new bool[SizeX() * SizeY()];
 
     for (int y = 0; y < SizeY(); y++) {
         for (int x = 0; x < SizeX(); x++) {
@@ -34,15 +34,15 @@ ConwayLifeArray::ConwayLifeArray(const int x, const int y) {
 }
 
 ConwayLifeArray::~ConwayLifeArray() {
-    delete[] board;
+    delete[] m_board;
 }
 
 const int ConwayLifeArray::SizeX() {
-    return size_x;
+    return m_size_x;
 }
 
 const int ConwayLifeArray::SizeY() {
-    return size_y;
+    return m_size_y;
 }
 
 const bool ConwayLifeArray::IsAlive(const int x, const int y) {
@@ -50,19 +50,16 @@ const bool ConwayLifeArray::IsAlive(const int x, const int y) {
         // we've been given an out of bounds cell so we'll treat it as dead
         return false;
     } else {
-        //return board[x][y];
-        return board[Index(x, y)];
+        return m_board[Index(x, y)];
     }
 }
 
 void ConwayLifeArray::SetAlive(const int x, const int y) {
-    //board[x][y] = true;
-    board[Index(x, y)] = true;
+    m_board[Index(x, y)] = true;
 }
 
 void ConwayLifeArray::SetDead(const int x, const int y) {
-    //board[x][y] = false;
-    board[Index(x, y)] = false;
+    m_board[Index(x, y)] = false;
 }
 
 void ConwayLifeArray::CalcNextGeneration() {
@@ -90,8 +87,7 @@ void ConwayLifeArray::CalcNextGeneration() {
 
     // TODO right now we're copying the board over through public access.
     // FIX THIS!
-    //std::copy(&(newBoard->board)[0][0], &(newBoard->board)[0][0]+10*10, &board[0][0]);
-    std::copy(&(newBoard->board)[0], &(newBoard->board)[0]+SizeX()*SizeY(), &board[0]);
+    std::copy(&(newBoard->m_board)[0], &(newBoard->m_board)[0]+SizeX()*SizeY(), &m_board[0]);
 
     ++generation;
 }
