@@ -79,7 +79,7 @@ void ConwayLife::CalcNextGeneration() {
     
     // to do this, we need to evaluate all rules on CURRENT state of board,
     // making any changes on a new copy of the board
-    std::unique_ptr<ConwayLife> newBoard = std::make_unique<ConwayLife>(SizeX(), SizeY());
+    auto newBoard = std::make_unique<ConwayLife>(SizeX(), SizeY());
 
     for (int y=0; y<SizeY(); y++) {
         for (int x=0; x<SizeX(); x++) {
@@ -101,7 +101,7 @@ void ConwayLife::CalcNextGeneration() {
     // FIX THIS!
     std::copy(newBoard->m_board.begin(), newBoard->m_board.end(), m_board.begin());
 
-    ++generation;
+    GenerationNum()++;
 }
 
 bool ConwayLife::CalcNewCellState(const int x, const int y) const {
