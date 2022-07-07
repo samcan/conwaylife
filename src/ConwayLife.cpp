@@ -20,7 +20,7 @@
 #include "ConwayLife.h"
 
 
-bool ConwayLife::IsAlive(const int x, const int y) const {
+auto ConwayLife::IsAlive(const int x, const int y) const -> ConwayLifeStatus {
     if (x < 0 || x >= SizeX() || y < 0 || y >= SizeY()) {
         // we've been given an out of bounds cell so we'll wrap around to
         // the other side
@@ -50,11 +50,11 @@ bool ConwayLife::IsAlive(const int x, const int y) const {
 }
 
 void ConwayLife::SetAlive(const int x, const int y) {
-    m_board.at(Index(x, y)) = true;
+    m_board.at(Index(x, y)) = ConwayLifeStatus::alive;
 }
 
 void ConwayLife::SetDead(const int x, const int y) {
-    m_board.at(Index(x, y)) = false;
+    m_board.at(Index(x, y)) = ConwayLifeStatus::dead;
 }
 
 void ConwayLife::CalcNextGeneration() {
@@ -66,8 +66,8 @@ void ConwayLife::CalcNextGeneration() {
 
     for (int y=0; y<SizeY(); y++) {
         for (int x=0; x<SizeX(); x++) {
-            bool newState = CalcNewCellState(x, y);
-            if (newState) {
+            ConwayLifeStatus newState = CalcNewCellState(x, y);
+            if (newState == ConwayLifeStatus::alive) {
                 newBoard->SetAlive(x, y);
             } else {
                 // the board is already initialized to dead so we shouldn't
@@ -87,7 +87,7 @@ void ConwayLife::CalcNextGeneration() {
     m_generation++;
 }
 
-bool ConwayLife::CalcNewCellState(const int x, const int y) const {
+auto ConwayLife::CalcNewCellState(const int x, const int y) const -> ConwayLifeStatus {
     // rules (from Wikipedia):
     // - Any live cell with two or three live neighbours survives.
     // - Any dead cell with three live neighbours becomes a live cell.
@@ -98,25 +98,25 @@ bool ConwayLife::CalcNewCellState(const int x, const int y) const {
     if (IsAlive(x, y)) {
         if (numLivingNeighbors >= 2 && numLivingNeighbors <= 3) {
             // live cell with 2 or 3 live neighbors, so stays living
-            return true;
+            return ConwayLifeStatus::alive;
         } else {
             // live cell with either less than 2 live
             // neighbors (underpopulation) or more than 3 (overpopulation)
             // either way, dies
-            return false;
+            return ConwayLifeStatus::dead;
         }
     } else if (numLivingNeighbors == 3) {
         // reproduction
-        return true;
+        return ConwayLifeStatus::alive;
     } else {
         // dead cell stays dead
-        return false;
+        return ConwayLifeStatus::dead;
     }
 }
 
 
 
-int ConwayLife::CountAliveNeighbors(const int x, const int y) const {
+auto ConwayLife::CountAliveNeighbors(const int x, const int y) const -> int {
     // count how many of the 8 neighbors surrounding this cell are alive
     int count(0);
 
