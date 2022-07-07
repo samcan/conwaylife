@@ -5,8 +5,15 @@
 
 class ConwayLife {
 public:
-    ConwayLife(const int x, const int y);
-    ~ConwayLife();
+    ConwayLife(const int x, const int y) {
+        m_size_x = x;
+        m_size_y = y;
+        m_board = std::vector<bool>(x*y, false);
+    }
+
+    ~ConwayLife() {
+        // since we're dealing with a vector destruction is auto-taken care of
+    }
 
     inline auto SizeX() const -> int { return m_size_x; }
     inline auto SizeY() const -> int { return m_size_y; }

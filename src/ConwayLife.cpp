@@ -19,15 +19,6 @@
 
 #include "ConwayLife.h"
 
-ConwayLife::ConwayLife(const int x, const int y) {
-    m_size_x = x;
-    m_size_y = y;
-    m_board = std::vector<bool>(x*y, false);
-}
-
-ConwayLife::~ConwayLife() {
-    // since we're dealing with a vector destruction is auto-taken care of
-}
 
 bool ConwayLife::IsAlive(const int x, const int y) const {
     if (x < 0 || x >= SizeX() || y < 0 || y >= SizeY()) {
