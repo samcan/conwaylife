@@ -1,4 +1,4 @@
-SOURCE	= src/life.cpp src/ConwayLifeArray.cpp src/ImageView.cpp
+SOURCE	= src/life.cpp src/ConwayLife.cpp src/ImageView.cpp
 HEADER	= 
 OUT	= bin/life.exe
 CC	 = g++

@@ -4,9 +4,9 @@
 #include <memory>
 
 #include "ImageView.h"
-#include "ConwayLifeArray.h"
+#include "ConwayLife.h"
 
-void ImageView::write(std::shared_ptr<ConwayLifeArray> board)
+void ImageView::write(std::shared_ptr<ConwayLife> board)
 {
     // write out ppm of results
     std::string outfilename("output" + std::to_string(board->GenerationNum()) + ".ppm");

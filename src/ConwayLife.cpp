@@ -17,27 +17,27 @@
 #include <iostream>
 #include <memory>
 
-#include "ConwayLifeArray.h"
+#include "ConwayLife.h"
 
-ConwayLifeArray::ConwayLifeArray(const int x, const int y) {
+ConwayLife::ConwayLife(const int x, const int y) {
     m_size_x = x;
     m_size_y = y;
     m_board = std::vector<bool>(100, false);
 }
 
-ConwayLifeArray::~ConwayLifeArray() {
+ConwayLife::~ConwayLife() {
     // since we're dealing with a vector destruction is auto-taken care of
 }
 
-int ConwayLifeArray::SizeX() const {
+int ConwayLife::SizeX() const {
     return m_size_x;
 }
 
-int ConwayLifeArray::SizeY() const {
+int ConwayLife::SizeY() const {
     return m_size_y;
 }
 
-bool ConwayLifeArray::IsAlive(const int x, const int y) const {
+bool ConwayLife::IsAlive(const int x, const int y) const {
     if (x < 0 || x >= SizeX() || y < 0 || y >= SizeY()) {
         // we've been given an out of bounds cell so we'll wrap around to
         // the other side
@@ -66,20 +66,20 @@ bool ConwayLifeArray::IsAlive(const int x, const int y) const {
     }
 }
 
-void ConwayLifeArray::SetAlive(const int x, const int y) {
+void ConwayLife::SetAlive(const int x, const int y) {
     m_board.at(Index(x, y)) = true;
 }
 
-void ConwayLifeArray::SetDead(const int x, const int y) {
+void ConwayLife::SetDead(const int x, const int y) {
     m_board.at(Index(x, y)) = false;
 }
 
-void ConwayLifeArray::CalcNextGeneration() {
+void ConwayLife::CalcNextGeneration() {
     // compute next generation of board
     
     // to do this, we need to evaluate all rules on CURRENT state of board,
     // making any changes on a new copy of the board
-    std::unique_ptr<ConwayLifeArray> newBoard = std::make_unique<ConwayLifeArray>(SizeX(), SizeY());
+    std::unique_ptr<ConwayLife> newBoard = std::make_unique<ConwayLife>(SizeX(), SizeY());
 
     for (int y=0; y<SizeY(); y++) {
         for (int x=0; x<SizeX(); x++) {
@@ -104,7 +104,7 @@ void ConwayLifeArray::CalcNextGeneration() {
     ++generation;
 }
 
-bool ConwayLifeArray::CalcNewCellState(const int x, const int y) const {
+bool ConwayLife::CalcNewCellState(const int x, const int y) const {
     // rules (from Wikipedia):
     // - Any live cell with two or three live neighbours survives.
     // - Any dead cell with three live neighbours becomes a live cell.
@@ -133,7 +133,7 @@ bool ConwayLifeArray::CalcNewCellState(const int x, const int y) const {
 
 
 
-int ConwayLifeArray::CountAliveNeighbors(const int x, const int y) const {
+int ConwayLife::CountAliveNeighbors(const int x, const int y) const {
     // count how many of the 8 neighbors surrounding this cell are alive
     int count(0);
 
@@ -156,6 +156,6 @@ int ConwayLifeArray::CountAliveNeighbors(const int x, const int y) const {
     return count;
 }
 
-inline int ConwayLifeArray::Index(const int x, const int y) const {
+inline int ConwayLife::Index(const int x, const int y) const {
     return y * SizeX() + x;
 }

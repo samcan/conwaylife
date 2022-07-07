@@ -4,14 +4,14 @@
 #include <string>
 #include <memory>
 
-#include "ConwayLifeArray.h"
+#include "ConwayLife.h"
 
 class ImageView {
 private:
     static std::string StringAlive();
     static std::string StringDead();
 public:
-    static void write(std::shared_ptr<ConwayLifeArray> board);
+    static void write(std::shared_ptr<ConwayLife> board);
 };
 
 #endif

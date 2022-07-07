@@ -3,11 +3,11 @@
 #include <string>
 #include <memory>
 
-#include "ConwayLifeArray.h"
+#include "ConwayLife.h"
 #include "ImageView.h"
 
 int main() {
-    auto conway = std::make_shared<ConwayLifeArray>(10, 10);
+    auto conway = std::make_shared<ConwayLife>(10, 10);
 
     // set pattern of blinker
     conway->SetAlive(1, 0);

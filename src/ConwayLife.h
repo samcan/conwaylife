@@ -3,7 +3,7 @@
 
 #include <vector>
 
-class ConwayLifeArray {
+class ConwayLife {
 private:
     int m_size_x;
     int m_size_y;
@@ -15,8 +15,8 @@ private:
 
     inline int Index(const int x, const int y) const;
 public:
-    ConwayLifeArray(const int x, const int y);
-    ~ConwayLifeArray();
+    ConwayLife(const int x, const int y);
+    ~ConwayLife();
 
     bool IsAlive(const int x, const int y) const;
     void SetAlive(const int x, const int y);
