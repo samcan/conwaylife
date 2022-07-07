@@ -19,6 +19,7 @@ public:
     auto IsAlive(const int x, const int y) const -> ConwayLifeStatus;
     void SetAlive(const int x, const int y);
     void SetDead(const int x, const int y);
+    void SetStatus(const int x, const int y, const ConwayLifeStatus status);
     void CalcNextGeneration();
 
     // instead of using a 2D array we're using a 1D array and indexing

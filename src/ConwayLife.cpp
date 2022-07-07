@@ -50,11 +50,15 @@ auto ConwayLife::IsAlive(const int x, const int y) const -> ConwayLifeStatus {
 }
 
 void ConwayLife::SetAlive(const int x, const int y) {
-    m_board.at(Index(x, y)) = ConwayLifeStatus::alive;
+    SetStatus(x, y, ConwayLifeStatus::alive);
 }
 
 void ConwayLife::SetDead(const int x, const int y) {
-    m_board.at(Index(x, y)) = ConwayLifeStatus::dead;
+    SetStatus(x, y, ConwayLifeStatus::dead);
+}
+
+void ConwayLife::SetStatus(const int x, const int y, const ConwayLifeStatus status) {
+    m_board.at(Index(x, y)) = status;
 }
 
 void ConwayLife::CalcNextGeneration() {
