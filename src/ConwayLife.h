@@ -22,10 +22,12 @@ public:
     void SetStatus(const int x, const int y, const ConwayLifeStatus status);
     void CalcNextGeneration();
 
+    auto Board_Front() { return m_board.begin(); }
+    auto Board_Back() { return m_board.end(); }
+private:
     // instead of using a 2D array we're using a 1D array and indexing
     // into the appropriate element
     std::vector<ConwayLifeStatus> m_board;
-private:
     int m_size_x;
     int m_size_y;
     int m_generation;

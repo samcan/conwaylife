@@ -83,10 +83,7 @@ void ConwayLife::CalcNextGeneration() {
 
     // once complete, we will then set our current board to point to our new
     // board, discarding the old board
-
-    // TODO right now we're copying the board over through public access.
-    // FIX THIS!
-    std::copy(newBoard->m_board.begin(), newBoard->m_board.end(), m_board.begin());
+    std::copy(newBoard->Board_Front(), newBoard->Board_Back(), Board_Front());
 
     m_generation++;
 }
