@@ -3,12 +3,12 @@
 
 #include <vector>
 
-#include "ConwayLife.h"
-
-class ConwayLifeArray : public ConwayLife {
+class ConwayLifeArray {
 private:
     int m_size_x;
     int m_size_y;
+
+    int generation = 0;
 
     bool CalcNewCellState(const int x, const int y) const;
     int CountAliveNeighbors(const int x, const int y) const;
@@ -22,7 +22,9 @@ public:
     void SetAlive(const int x, const int y);
     void SetDead(const int x, const int y);
 
-    
+    int GenerationNum() const {
+        return generation;
+    }
 
     void CalcNextGeneration();
 

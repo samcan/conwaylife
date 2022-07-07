@@ -17,7 +17,6 @@
 #include <iostream>
 #include <memory>
 
-#include "ConwayLife.h"
 #include "ConwayLifeArray.h"
 
 ConwayLifeArray::ConwayLifeArray(const int x, const int y) {
