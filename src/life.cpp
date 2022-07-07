@@ -7,7 +7,7 @@
 #include "ImageView.h"
 
 int main() {
-    std::shared_ptr<ConwayLifeArray> conway = std::make_shared<ConwayLifeArray>(100, 100);
+    auto conway = std::make_shared<ConwayLifeArray>(10, 10);
 
     // set pattern of blinker
     conway->SetAlive(1, 0);
