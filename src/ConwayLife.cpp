@@ -29,14 +29,6 @@ ConwayLife::~ConwayLife() {
     // since we're dealing with a vector destruction is auto-taken care of
 }
 
-int ConwayLife::SizeX() const {
-    return m_size_x;
-}
-
-int ConwayLife::SizeY() const {
-    return m_size_y;
-}
-
 bool ConwayLife::IsAlive(const int x, const int y) const {
     if (x < 0 || x >= SizeX() || y < 0 || y >= SizeY()) {
         // we've been given an out of bounds cell so we'll wrap around to
@@ -101,7 +93,7 @@ void ConwayLife::CalcNextGeneration() {
     // FIX THIS!
     std::copy(newBoard->m_board.begin(), newBoard->m_board.end(), m_board.begin());
 
-    GenerationNum()++;
+    m_generation++;
 }
 
 bool ConwayLife::CalcNewCellState(const int x, const int y) const {

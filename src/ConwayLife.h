@@ -21,12 +21,13 @@ public:
     void SetAlive(const int x, const int y);
     void SetDead(const int x, const int y);
 
-    auto GenerationNum() -> int& { return m_generation; }
+    auto GenerationNum() const -> int { return m_generation; }
 
     void CalcNextGeneration();
 
-    int SizeX() const;
-    int SizeY() const;
+    auto SizeX() const -> int { return m_size_x; }
+    auto SizeY() const -> int { return m_size_y; }
+
 
     // instead of using a 2D array we're using a 1D array and indexing
     // into the appropriate element
