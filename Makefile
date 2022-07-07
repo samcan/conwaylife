@@ -1,8 +1,8 @@
 SOURCE	= src/life.cpp src/ConwayLifeArray.cpp src/ImageView.cpp
 HEADER	= 
-OUT	= bin/life
+OUT	= bin/life.exe
 CC	 = g++
-FLAGS	 = -g -Wall
+FLAGS	 = -g -Wall -Wextra
 LFLAGS	 = 
 
 all: $(SOURCE)
