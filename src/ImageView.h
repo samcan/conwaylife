@@ -8,8 +8,8 @@
 
 class ImageView {
 private:
-    const static std::string StringAlive();
-    const static std::string StringDead();
+    static std::string StringAlive();
+    static std::string StringDead();
 public:
     static void write(std::shared_ptr<ConwayLifeArray> board);
 };

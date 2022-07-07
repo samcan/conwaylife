@@ -37,10 +37,10 @@ void ImageView::write(std::shared_ptr<ConwayLifeArray> board)
     }
 }
 
-const std::string ImageView::StringAlive() {
+std::string ImageView::StringAlive() {
     return "0 0 0";
 }
 
-const std::string ImageView::StringDead() {
+std::string ImageView::StringDead() {
     return "255 255 255";
 }

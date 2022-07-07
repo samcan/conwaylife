@@ -37,15 +37,15 @@ ConwayLifeArray::~ConwayLifeArray() {
     delete[] m_board;
 }
 
-const int ConwayLifeArray::SizeX() {
+int ConwayLifeArray::SizeX() const {
     return m_size_x;
 }
 
-const int ConwayLifeArray::SizeY() {
+int ConwayLifeArray::SizeY() const {
     return m_size_y;
 }
 
-const bool ConwayLifeArray::IsAlive(const int x, const int y) {
+bool ConwayLifeArray::IsAlive(const int x, const int y) const {
     if (x < 0 || x >= SizeX() || y < 0 || y >= SizeY()) {
         // we've been given an out of bounds cell so we'll wrap around to
         // the other side
@@ -112,7 +112,7 @@ void ConwayLifeArray::CalcNextGeneration() {
     ++generation;
 }
 
-const bool ConwayLifeArray::CalcNewCellState(const int x, const int y) {
+bool ConwayLifeArray::CalcNewCellState(const int x, const int y) const {
     // rules (from Wikipedia):
     // - Any live cell with two or three live neighbours survives.
     // - Any dead cell with three live neighbours becomes a live cell.
@@ -141,7 +141,8 @@ const bool ConwayLifeArray::CalcNewCellState(const int x, const int y) {
 
 
 
-const int ConwayLifeArray::CountAliveNeighbors(const int x, const int y) {
+int ConwayLifeArray::CountAliveNeighbors(const int x, const int y) const {
+    // count how many of the 8 neighbors surrounding this cell are alive
     int count(0);
 
     int x1(x-1);
@@ -163,6 +164,6 @@ const int ConwayLifeArray::CountAliveNeighbors(const int x, const int y) {
     return count;
 }
 
-inline const int ConwayLifeArray::Index(const int x, const int y) {
+inline int ConwayLifeArray::Index(const int x, const int y) const {
     return y * SizeX() + x;
 }
