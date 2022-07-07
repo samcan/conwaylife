@@ -22,7 +22,7 @@
 ConwayLife::ConwayLife(const int x, const int y) {
     m_size_x = x;
     m_size_y = y;
-    m_board = std::vector<bool>(100, false);
+    m_board = std::vector<bool>(x*y, false);
 }
 
 ConwayLife::~ConwayLife() {
