@@ -23,18 +23,11 @@
 ConwayLifeArray::ConwayLifeArray(const int x, const int y) {
     m_size_x = x;
     m_size_y = y;
-
-    m_board = new bool[SizeX() * SizeY()];
-
-    for (int y = 0; y < SizeY(); y++) {
-        for (int x = 0; x < SizeX(); x++) {
-            SetDead(x, y);
-        }
-    }
+    m_board = std::vector<bool>(100, false);
 }
 
 ConwayLifeArray::~ConwayLifeArray() {
-    delete[] m_board;
+    // since we're dealing with a vector destruction is auto-taken care of
 }
 
 int ConwayLifeArray::SizeX() const {
@@ -70,16 +63,16 @@ bool ConwayLifeArray::IsAlive(const int x, const int y) const {
 
         return IsAlive(new_x, new_y);
     } else {
-        return m_board[Index(x, y)];
+        return m_board.at(Index(x, y));
     }
 }
 
 void ConwayLifeArray::SetAlive(const int x, const int y) {
-    m_board[Index(x, y)] = true;
+    m_board.at(Index(x, y)) = true;
 }
 
 void ConwayLifeArray::SetDead(const int x, const int y) {
-    m_board[Index(x, y)] = false;
+    m_board.at(Index(x, y)) = false;
 }
 
 void ConwayLifeArray::CalcNextGeneration() {
@@ -107,7 +100,7 @@ void ConwayLifeArray::CalcNextGeneration() {
 
     // TODO right now we're copying the board over through public access.
     // FIX THIS!
-    std::copy(&(newBoard->m_board)[0], &(newBoard->m_board)[0]+SizeX()*SizeY(), &m_board[0]);
+    std::copy(newBoard->m_board.begin(), newBoard->m_board.end(), m_board.begin());
 
     ++generation;
 }

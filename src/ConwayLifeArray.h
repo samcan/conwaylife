@@ -1,6 +1,8 @@
 #ifndef _CONWAYLIFEARRAY_H_
 #define _CONWAYLIFEARRAY_H_
 
+#include <vector>
+
 #include "ConwayLife.h"
 
 class ConwayLifeArray : public ConwayLife {
@@ -29,7 +31,7 @@ public:
 
     // instead of using a 2D array we're using a 1D array and indexing
     // into the appropriate element
-    bool *m_board;
+    std::vector<bool> m_board;
 };
 
 
