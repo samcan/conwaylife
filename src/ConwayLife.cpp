@@ -70,7 +70,7 @@ void ConwayLife::CalcNextGeneration() {
 
     for (int y=0; y<SizeY(); y++) {
         for (int x=0; x<SizeX(); x++) {
-            ConwayLifeStatus newState = CalcNewCellState(x, y);
+            auto newState = CalcNewCellState(x, y);
             if (newState == ConwayLifeStatus::alive) {
                 newBoard->SetAlive(x, y);
             } else {
