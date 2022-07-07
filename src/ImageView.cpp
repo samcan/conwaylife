@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <memory>
 
 #include "ImageView.h"
 #include "ConwayLife.h"

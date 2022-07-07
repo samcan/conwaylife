@@ -2,7 +2,6 @@
 #define _IMAGEVIEW_H_
 
 #include <string>
-#include <memory>
 
 #include "ConwayLife.h"
 

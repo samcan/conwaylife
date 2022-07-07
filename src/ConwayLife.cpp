@@ -13,8 +13,6 @@
 // Any dead cell with three live neighbours becomes a live cell.
 // All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 
-#include <algorithm>
-#include <iostream>
 #include <memory>
 
 #include "ConwayLife.h"
