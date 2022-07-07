@@ -8,9 +8,9 @@ public:
     ConwayLife(const int x, const int y);
     ~ConwayLife();
 
-    auto SizeX() const -> int { return m_size_x; }
-    auto SizeY() const -> int { return m_size_y; }
-    auto GenerationNum() const -> int { return m_generation; }
+    inline auto SizeX() const -> int { return m_size_x; }
+    inline auto SizeY() const -> int { return m_size_y; }
+    inline auto GenerationNum() const -> int { return m_generation; }
 
     bool IsAlive(const int x, const int y) const;
     void SetAlive(const int x, const int y);
@@ -28,7 +28,7 @@ private:
     bool CalcNewCellState(const int x, const int y) const;
     int CountAliveNeighbors(const int x, const int y) const;
 
-    inline int Index(const int x, const int y) const;
+    inline auto Index(const int x, const int y) const -> int { return y * SizeX() + x; }
 };
 
 

@@ -147,7 +147,3 @@ int ConwayLife::CountAliveNeighbors(const int x, const int y) const {
 
     return count;
 }
-
-inline int ConwayLife::Index(const int x, const int y) const {
-    return y * SizeX() + x;
-}
