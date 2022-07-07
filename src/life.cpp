@@ -7,7 +7,7 @@
 #include "ImageView.h"
 
 int main() {
-    auto conway = std::make_shared<ConwayLife>(10, 10);
+    auto conway = std::make_unique<ConwayLife>(10, 10);
 
     // set pattern of blinker
     conway->SetAlive(1, 0);
@@ -22,12 +22,12 @@ int main() {
     conway->SetAlive(6, 7);
     
     // write state
-    ImageView::write(conway);
+    ImageView::write(*conway);
 
     for (int gen=0; gen<10; gen++) {
         // advance generation and write image
         conway->CalcNextGeneration();
-        ImageView::write(conway);
+        ImageView::write(*conway);
     }
 
     return 0;

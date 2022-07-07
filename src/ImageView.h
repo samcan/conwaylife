@@ -8,10 +8,11 @@
 
 class ImageView {
 private:
-    static std::string StringAlive();
-    static std::string StringDead();
+    inline static std::string StringAlive();
+    inline static std::string StringDead();
+    inline static std::string CellString(ConwayLifeStatus status);
 public:
-    static void write(std::shared_ptr<ConwayLife> board);
+    static void write(ConwayLife& board);
 };
 
 #endif

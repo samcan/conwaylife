@@ -6,17 +6,17 @@
 #include "ImageView.h"
 #include "ConwayLife.h"
 
-void ImageView::write(std::shared_ptr<ConwayLife> board)
+void ImageView::write(ConwayLife& board)
 {
     // write out ppm of results
-    std::string outfilename("output" + std::to_string(board->GenerationNum()) + ".ppm");
+    std::string outfilename("output" + std::to_string(board.GenerationNum()) + ".ppm");
     std::ofstream outfile(outfilename, std::ios::binary);
 
     // ppm file header - P3 for 0-255 RGB as a text file
     outfile << "P3" << '\n';
     // image dimensions - width X height
-    int imagewidth(board->SizeX());
-    int imageheight(board->SizeY());
+    int imagewidth(board.SizeX());
+    int imageheight(board.SizeY());
 
     outfile << imagewidth << " " << imageheight << '\n';
     outfile << "255" << '\n';
@@ -28,19 +28,23 @@ void ImageView::write(std::shared_ptr<ConwayLife> board)
     {
         for (int x = 0; x < imagewidth; x++)
         {
-            if (board->IsAlive(x, y)) {
-                outfile << StringAlive() << '\n';
-            } else {
-                outfile << StringDead() << '\n';
-            }
+            outfile << CellString(board.IsAlive(x, y)) << '\n';
         }
     }
 }
 
-std::string ImageView::StringAlive() {
+inline std::string ImageView::CellString(ConwayLifeStatus status) {
+    if (status == ConwayLifeStatus::alive) {
+        return StringAlive();
+    } else {
+        return StringDead();
+    }
+}
+
+inline std::string ImageView::StringAlive() {
     return "0 0 0";
 }
 
-std::string ImageView::StringDead() {
+inline std::string ImageView::StringDead() {
     return "255 255 255";
 }
